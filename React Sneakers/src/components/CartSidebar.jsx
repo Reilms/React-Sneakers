@@ -18,7 +18,7 @@ const CartSidebar = () => {
                             <p className='font-bold'>12.999 сом</p>
                         </div>
                         <button className='border border-[#D3D3D3] min-w-9 min-h-9 flex items-center justify-center rounded-lg
-          cursor-pointer'><ImCross color='lightgray' size={12} /></button>
+                        cursor-pointer'><ImCross color='lightgray' size={12} /></button>
                     </div>
 
                     <div className='border-2 border-gray-200 rounded-xl flex items-center justify-betwee w-full h-30 gap-4 p-4'>
@@ -28,7 +28,7 @@ const CartSidebar = () => {
                             <p className='font-bold'>12.999 сом</p>
                         </div>
                         <button className='border border-[#D3D3D3] min-w-9 min-h-9 flex items-center justify-center rounded-lg
-          cursor-pointer'><ImCross color='lightgray' size={12} /></button>
+                        cursor-pointer'><ImCross color='lightgray' size={12} /></button>
                     </div>
 
                     <div className='border-2 border-gray-200 rounded-xl flex items-center justify-betwee w-full h-30 gap-4 p-4'>
@@ -38,7 +38,7 @@ const CartSidebar = () => {
                             <p className='font-bold'>12.999 сом</p>
                         </div>
                         <button className='border border-[#D3D3D3] min-w-9 min-h-9 flex items-center justify-center rounded-lg
-          cursor-pointer'><ImCross color='lightgray' size={12} /></button>
+                        cursor-pointer'><ImCross color='lightgray' size={12} /></button>
                     </div>
 
                     <div className='border-2 border-gray-200 rounded-xl flex items-center justify-betwee w-full h-30 gap-4 p-4'>
@@ -48,7 +48,7 @@ const CartSidebar = () => {
                             <p className='font-bold'>12.999 сом</p>
                         </div>
                         <button className='border border-[#D3D3D3] min-w-9 min-h-9 flex items-center justify-center rounded-lg
-          cursor-pointer'><ImCross color='lightgray' size={12} /></button>
+                        cursor-pointer'><ImCross color='lightgray' size={12} /></button>
                     </div>
 
                     <div className='border-2 border-gray-200 rounded-xl flex items-center justify-betwee w-full h-30 gap-4 p-4'>
@@ -58,7 +58,7 @@ const CartSidebar = () => {
                             <p className='font-bold'>12.999 сом</p>
                         </div>
                         <button className='border border-[#D3D3D3] min-w-9 min-h-9 flex items-center justify-center rounded-lg
-          cursor-pointer'><ImCross color='lightgray' size={12} /></button>
+                        cursor-pointer'><ImCross color='lightgray' size={12} /></button>
                     </div>
 
                     <div className='border-2 border-gray-200 rounded-xl flex items-center justify-betwee w-full h-30 gap-4 p-4'>
@@ -68,7 +68,7 @@ const CartSidebar = () => {
                             <p className='font-bold'>12.999 сом</p>
                         </div>
                         <button className='border border-[#D3D3D3] min-w-9 min-h-9 flex items-center justify-center rounded-lg
-          cursor-pointer'><ImCross color='lightgray' size={12} /></button>
+                        cursor-pointer'><ImCross color='lightgray' size={12} /></button>
                     </div>
 
                     <div className='border-2 border-gray-200 rounded-xl flex items-center justify-betwee w-full h-30 gap-4 p-4'>
@@ -78,7 +78,7 @@ const CartSidebar = () => {
                             <p className='font-bold'>12.999 сом</p>
                         </div>
                         <button className='border border-[#D3D3D3] min-w-9 min-h-9 flex items-center justify-center rounded-lg
-          cursor-pointer'><ImCross color='lightgray' size={12} /></button>
+                        cursor-pointer'><ImCross color='lightgray' size={12} /></button>
                     </div>
 
                 </div>

@@ -2,6 +2,32 @@ import { FiSearch } from "react-icons/fi";
 import ProductCard from "./ProductCard";
 
 const Catalog = () => {
+
+    const sneakers = [
+        {
+            title: 'Мужские Кроссовки Nike Blazer Mid Suede',
+            price:  12.999,
+            img: '/img/sneakers1.jpg',
+        },
+        {
+            title: 'Мужские Кроссовки Nike Air Max 270',
+            price:  12.499,
+            img: '/img/sneakers2.jpg',
+        },
+        {
+            title: 'Мужские Кроссовки Nike Blazer Mid Suede',
+            price:  8.499,
+            img: '/img/sneakers3.jpg',
+        },
+        {
+            title: 'Кроссовки Puma X Aka Boku Future rider',
+            price:  8.999,
+            img: '/img/sneakers4.jpg',
+        },
+    ]
+    // sneakers - это временная замена BackEnd или API
+
+
     return (
         <main className='p-20 flex flex-col gap-10'>
             <div className='flex items-center justify-between'>
@@ -12,24 +38,34 @@ const Catalog = () => {
             </div>
 
             <div className='flex flex-wrap items-center gap-18 '>
-                <ProductCard 
-                name={'Мужские Кроссовки Nike Blazer Mid Suede'}
-                price={'12.999 сом'}
-                img={'/img/sneakers1.jpg'}/>
-                <ProductCard 
-                name={'Мужские Кроссовки Nike Blazer Mid Suede'}
-                price={'12.999 сом'}
-                img={'/img/sneakers1.jpg'}/>
-                <ProductCard 
-                name={'Мужские Кроссовки Nike Blazer Mid Suede'}
-                price={'12.999 сом'}
-                img={'/img/sneakers1.jpg'}/>
-                <ProductCard 
-                name={'Мужские Кроссовки Nike Blazer Mid Suede'}
-                price={'12.999 сом'}
-                img={'/img/sneakers1.jpg'}/>
+                {sneakers.map(item => (
+                    <ProductCard
+                    title={item.title}
+                    price={item.price}
+                    img={item.img}
+                    onClick={() => {alert(item.title)}}
+                    />
+                ))}
             </div>
         </main>
     )
 }
 export default Catalog
+
+
+{/* <ProductCard
+                    title={'Мужские Кроссовки Nike Blazer Mid Suede'}
+                    price={12.999}
+                    img={'/img/sneakers1.jpg'} />
+                <ProductCard
+                    title={'Мужские Кроссовки Nike Air Max 270'}
+                    price={12.999}
+                    img={'/img/sneakers2.jpg'} />
+                <ProductCard
+                    title={'Мужские Кроссовки Nike Blazer Mid Suede'}
+                    price={8.499}
+                    img={'/img/sneakers3.jpg'} />
+                <ProductCard
+                    title={'Кроссовки Puma X Aka Boku Future rider'}
+                    price={8.999}
+                    img={'/img/sneakers4.jpg'} /> */}
