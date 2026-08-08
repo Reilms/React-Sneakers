@@ -1,32 +1,16 @@
+import { useState, useEffect } from "react";
 import { FiSearch } from "react-icons/fi";
 import ProductCard from "./ProductCard";
 
-const Catalog = () => {
+function Catalog() {
 
-    const sneakers = [
-        {
-            title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-            price:  12.999,
-            img: '/img/sneakers1.jpg',
-        },
-        {
-            title: 'Мужские Кроссовки Nike Air Max 270',
-            price:  12.499,
-            img: '/img/sneakers2.jpg',
-        },
-        {
-            title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-            price:  8.499,
-            img: '/img/sneakers3.jpg',
-        },
-        {
-            title: 'Кроссовки Puma X Aka Boku Future rider',
-            price:  8.999,
-            img: '/img/sneakers4.jpg',
-        },
-    ]
-    // sneakers - это временная замена BackEnd или API
+    const [items, setItems] = useState([])
 
+    useEffect(() => {
+        fetch("https://6a77425c63e9caf860c3717b.mockapi.io/items")
+        .then(res => {return res.json()})
+        .then((json) => {setItems(json)})
+    })
 
     return (
         <main className='p-20 flex flex-col gap-10'>
@@ -38,12 +22,13 @@ const Catalog = () => {
             </div>
 
             <div className='flex flex-wrap items-center gap-18 '>
-                {sneakers.map(item => (
+                {items.map(item => (
                     <ProductCard
                     title={item.title}
                     price={item.price}
                     img={item.img}
-                    onClick={() => {alert(item.title)}}
+                    onClickFavorite={() => {alert("Добавили в избранное:")}}
+                    onClickPlus={() => {alert("Добавили в корзину:")}}
                     />
                 ))}
             </div>
@@ -51,21 +36,3 @@ const Catalog = () => {
     )
 }
 export default Catalog
-
-
-{/* <ProductCard
-                    title={'Мужские Кроссовки Nike Blazer Mid Suede'}
-                    price={12.999}
-                    img={'/img/sneakers1.jpg'} />
-                <ProductCard
-                    title={'Мужские Кроссовки Nike Air Max 270'}
-                    price={12.999}
-                    img={'/img/sneakers2.jpg'} />
-                <ProductCard
-                    title={'Мужские Кроссовки Nike Blazer Mid Suede'}
-                    price={8.499}
-                    img={'/img/sneakers3.jpg'} />
-                <ProductCard
-                    title={'Кроссовки Puma X Aka Boku Future rider'}
-                    price={8.999}
-                    img={'/img/sneakers4.jpg'} /> */}

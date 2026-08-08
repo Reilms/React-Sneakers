@@ -1,13 +1,15 @@
 import { ImCross } from "react-icons/im";
 import { FaArrowRight } from "react-icons/fa6";
 
-const CartSidebar = () => {
+function CartSidebar(props) {
     return (
         <>
             <aside className='bg-white h-screen w-100 fixed right-0 top-0 border shadow-2xl z-10 p-7 flex flex-col'>
                 <div className='flex items-center justify-between mb-10'>
                     <h3 className='font-semibold text-2xl'>Корзина</h3>
-                    <button className='w-10 h-10 cursor-pointer'><ImCross color='black' size={20} /></button>
+                    <button className='w-10 h-10 cursor-pointer'
+                    onClick={props.onClose}
+                    ><ImCross color='black' size={20}/></button>
                 </div>
 
                 <div className='flex flex-col flex-1 gap-5 overflow-auto scrollbar-none '>
@@ -100,7 +102,9 @@ const CartSidebar = () => {
           hover:bg-green-700 duration-200'>Оформить заказ <FaArrowRight size={20} className='relative -right-15' /></button>
                 </div>
             </aside>
-            <div className='bg-black h-screen w-screen fixed left-0 top-0 z-5 opacity-50'></div>
+            <div className='bg-black h-screen w-screen fixed left-0 top-0 z-5 opacity-50'
+            onClick={props.onClose}
+            ></div>
         </>
     )
 }

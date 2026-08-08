@@ -2,7 +2,7 @@ import { BsCart2 } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
 
-const Header = () => {
+function Header(props) {
     return (
         <header className='flex items-center justify-between p-14 border-b-2 border-gray-200'>
             <div className='flex items-center justify-center gap-5'>
@@ -14,7 +14,8 @@ const Header = () => {
             </div>
 
             <ul className='flex items-center justify-center gap-10'>
-                <li className='flex items-center justify-center gap-3 cursor-pointer'>
+                <li className='flex items-center justify-center gap-3 cursor-pointer'
+                onClick={props.onClickCart}>
                     <BsCart2 size={25} color='gray' />
                     <span className='text-gray-500 font-semibold'>1205 сом</span>
                 </li>
