@@ -1,7 +1,7 @@
 import { ImCross } from "react-icons/im";
 import { FaArrowRight } from "react-icons/fa6";
 
-function CartSidebar({ title, price, img, onClose, items = [] }) {
+function CartSidebar({onClose, items = [] }) {
     return (
         <>
             <aside className='bg-white h-screen w-100 fixed right-0 top-0 border shadow-2xl z-10 p-7 flex flex-col'>
@@ -15,10 +15,10 @@ function CartSidebar({ title, price, img, onClose, items = [] }) {
                 <div className='flex flex-col flex-1 gap-5 overflow-auto scrollbar-none '>
                     {items.map((obj) => (
                         <div className='border-2 border-gray-200 rounded-xl flex items-center justify-betwee w-full h-30 gap-4 p-4'>
-                            <img src={img} alt="" width={70} height={70} />
+                            <img src={obj.img} alt="" width={70} height={70} />
                             <div className='flex flex-col gap-2'>
-                                <h3>{title}</h3>
-                                <p className='font-bold'>{price} сом</p>
+                                <h3>{obj.title}</h3>
+                                <p className='font-bold'>{obj.price} сом</p>
                             </div>
                             <button className='border border-[#D3D3D3] min-w-9 min-h-9 flex items-center justify-center rounded-lg
                         cursor-pointer'><ImCross color='lightgray' size={12} /></button>
