@@ -9,8 +9,6 @@ function App() {
 
   const [openSidebar, setOpenSidebar] = useState(false)
 
-  
-
   return (
     <>
       {openSidebar && <CartSidebar onClose={() => setOpenSidebar(false)}/>}

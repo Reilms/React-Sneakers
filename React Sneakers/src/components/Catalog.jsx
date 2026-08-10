@@ -5,6 +5,7 @@ import ProductCard from "./ProductCard";
 function Catalog() {
 
     const [items, setItems] = useState([])
+    const [cartItems, setCartItems] = useState([])
 
     useEffect(() => {
         fetch("https://6a77425c63e9caf860c3717b.mockapi.io/items")
@@ -12,6 +13,10 @@ function Catalog() {
         .then((json) => {setItems(json)})
     })
 
+    const addToCart = (obj) => {
+        setCartItems(prev => [...prev, obj])  
+    }
+    
     return (
         <main className='p-20 flex flex-col gap-10'>
             <div className='flex items-center justify-between'>
@@ -27,8 +32,8 @@ function Catalog() {
                     title={item.title}
                     price={item.price}
                     img={item.img}
-                    onClickFavorite={() => {alert("Добавили в избранное:")}}
-                    onClickPlus={() => {alert("Добавили в корзину:")}}
+                    onFavorite={() => {alert("Добавили в избранное:")}}
+                    onPlus={(obj) => addToCart(obj)}
                     />
                 ))}
             </div>
