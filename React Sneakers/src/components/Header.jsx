@@ -1,6 +1,7 @@
 import { BsCart2 } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
+import { Link } from 'react-router-dom'
 
 function Header(props) {
     return (
@@ -19,7 +20,9 @@ function Header(props) {
                     <BsCart2 size={25} color='gray' />
                     <span className='text-gray-500 font-semibold'>1205 сом</span>
                 </li>
-                <li className='cursor-pointer'><FaRegHeart size={25} color='gray' /></li>
+                <Link to={"/Favorites"}>
+                    <li className='cursor-pointer'><FaRegHeart size={25} color='gray' /></li>
+                </Link>
                 <li className='cursor-pointer'><CgProfile size={25} color='gray' /></li>
 
             </ul>
