@@ -4,21 +4,15 @@ import { useState, useEffect } from "react";
 import { FiSearch } from "react-icons/fi";
 import { ImCross } from "react-icons/im";
 
-function MainPage({ cartItems = [], addToCart }) {
+function MainPage({ cartItems = [], addToCart, favoriteItems = [], addToFavorites}) {
 
     const [items, setItems] = useState([])
-    const [favoriteItems, setFavoriteItems] = useState([])
     const [searchValue, setSearchValue] = useState('')
 
     useEffect(() => {
         axios.get("http://localhost:3001/items")
             .then((res) => { setItems(res.data) })
     }, [])
-
-    const addToFavorites = (obj) => {
-        axios.post("http://localhost:3001/favorites", obj)
-        setFavoriteItems(prev => [...prev, obj])
-    }
 
     const onChangeOfSearch = (event) => {
         setSearchValue(event.target.value)
@@ -47,11 +41,15 @@ function MainPage({ cartItems = [], addToCart }) {
                         .map((item, index) => (
                             <ProductCard
                                 key={index}
+                                onFavorite={(obj) => { addToFavorites(obj) }}
+                                onPlus={(obj) => { addToCart(obj) }}
+                                {...item}
+                                /* это конкотенация, мы передаем все элементы которые не функции или что-либо особое как обьект.
+                                Нам не обязательно передовать каждый аргумент вот так
                                 title={item.title}
                                 price={item.price}
                                 img={item.img}
-                                onFavorite={(obj) => { addToFavorites(obj) }}
-                                onPlus={(obj) => { addToCart(obj) }}
+                                id={item.id}*/
                             />
                         ))}
                 </div>

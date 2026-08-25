@@ -3,10 +3,10 @@ import { FaRegHeart, FaPlus } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 
-function ProductCard({ title, price, img, onFavorite, onPlus }) {
+function ProductCard({ title, price, img, id, onFavorite, onPlus, favorited = false}) {
 
     const [isAdded, setIsAdded] = useState(false)
-    const [isFavorite, setIsFavorite] = useState(false)
+    const [isFavorite, setIsFavorite] = useState(favorited)
 
     const onClickPlus = () => {
         onPlus({ title, price, img })
@@ -14,7 +14,7 @@ function ProductCard({ title, price, img, onFavorite, onPlus }) {
     }
 
     const onClickFavorite = () => {
-        onFavorite({ title, price, img })
+        onFavorite({ title, price, img, id})
         setIsFavorite(!isFavorite)
     }
 
