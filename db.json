@@ -78,94 +78,15 @@
       "title": "Мужские Кроссовки Nike Air Max 270",
       "price": 12499,
       "img": "/img/sneakers2.jpg",
-      "id": "qBOGtg6-8cc"
+      "id": "4DZBuLzcpTY"
     },
-    {
-      "title": "Мужские Кроссовки Nike Blazer Mid Suede",
-      "price": 8499,
-      "img": "/img/sneakers3.jpg",
-      "id": "Yq52dBOqfzQ"
-    },
-    {
-      "title": "Кроссовки Puma X Aka Boku Future Rider",
-      "price": 8999,
-      "img": "/img/sneakers4.jpg",
-      "id": "pCdgQhaRzb8"
-    },
-    {
-      "title": "Мужские Кроссовки Nike Blazer Mid Suede",
-      "price": 8499,
-      "img": "/img/sneakers3.jpg",
-      "id": "8DNsoQcq2tk"
-    },
-    {
-      "title": "Мужские Кроссовки Nike Air Max 270",
-      "price": 12499,
-      "img": "/img/sneakers2.jpg",
-      "id": "MZe-QlFmhh8"
-    },
-    {
-      "title": "Мужские Кроссовки Nike Air Max 270",
-      "price": 12499,
-      "img": "/img/sneakers2.jpg",
-      "id": "qlhRebPNFT4"
-    },
-    {
-      "title": "Мужские Кроссовки Nike Air Max 270",
-      "price": 12499,
-      "img": "/img/sneakers2.jpg",
-      "id": "TJ20cOqIdUk"
-    },
-    {
-      "title": "Мужские Кроссовки Nike Air Max 270",
-      "price": 12499,
-      "img": "/img/sneakers2.jpg",
-      "id": "K_vBIhoZFz4"
-    },
-    {
-      "title": "Мужские Кроссовки Nike Air Max 270",
-      "price": 12499,
-      "img": "/img/sneakers2.jpg",
-      "id": "PGdU_yTeDcw"
-    },
-    {
-      "title": "Мужские Кроссовки Nike Air Max 270",
-      "price": 12499,
-      "img": "/img/sneakers2.jpg",
-      "id": "FRy-eqbgUfc"
-    },
-    {
-      "title": "Мужские Кроссовки Nike Air Max 270",
-      "price": 12499,
-      "img": "/img/sneakers2.jpg",
-      "id": "HEo-g4-HO7M"
-    },
-    {
-      "title": "Мужские Кроссовки Nike Air Max 270",
-      "price": 12499,
-      "img": "/img/sneakers2.jpg",
-      "id": "u0le9OK9C2Q"
-    },
-    {
-      "title": "Мужские Кроссовки Nike Air Max 270",
-      "price": 12499,
-      "img": "/img/sneakers2.jpg",
-      "id": "So4LvN_ZNb0"
-    },
-    {
-      "title": "Мужские Кроссовки Nike Air Max 270",
-      "price": 12499,
-      "img": "/img/sneakers2.jpg",
-      "id": "ReW4g43HVSw"
-    }
-  ],
-  "favorites": [
     {
       "title": "Мужские Кроссовки Nike Blazer Mid Suede",
       "price": 12999,
       "img": "/img/sneakers1.jpg",
-      "id": "WU3S_-JJCXk"
+      "id": "lsCKaTxsAro"
     }
   ],
+  "favorites": [],
   "$schema": "./node_modules/json-server/schema.json"
 }
