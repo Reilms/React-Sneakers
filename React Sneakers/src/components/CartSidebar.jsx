@@ -1,8 +1,38 @@
 import { ImCross } from "react-icons/im";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
 import { FaBoxOpen } from "react-icons/fa";
+import { HiDocumentCheck } from "react-icons/hi2";
+import React from 'react'
+import Info from "./Info";
+import AppContext from "../Context";
+import axios from 'axios';
 
 function CartSidebar({ onClose, onRemove, items = [] }) {
+
+    const { cartItems, setCartItems } = React.useContext(AppContext)
+
+    const [isOrdered, setIsOrdered] = React.useState(false)
+    //const [orderId, setOrderId] = React.useState(null) если бд генерирует сам id и по порядку то можно добавить это с `Ваш заказ ${orderId} скоро будет передан курьерской доставке`
+    const [isLoading, setIsLoading] = React.useState(false)
+
+    const onClickOrder = async () => {
+        try {
+            setIsLoading(true)
+            const { data } = await axios.post("http://localhost:3001/Orders", { items: cartItems })
+            //await axios.put("http://localhost:3001/cartItems", []) - для настоящего Бекенда, JSON server не работает с PUT
+            //setOrderId(data.Id)
+            setIsOrdered(true)
+            setCartItems([])
+            for (let i = 0; cartItems.length > i; i++) {
+                const item = cartItems[i]
+                await axios.delete(`http://localhost:3001/cartItems/${item.id}`)
+            } // Это замена правильному варианту. Будущий я, не используй это
+        } catch (error) {
+            alert("Не смогли оформить заказ :(")
+        }
+        setIsLoading(false)
+    }
+
     return (
         <>
             <aside className='bg-white h-screen w-100 fixed right-0 top-0 border shadow-2xl z-10 p-7 flex flex-col'>
@@ -45,20 +75,17 @@ function CartSidebar({ onClose, onRemove, items = [] }) {
                                 </li>
                             </ul>
                             <button type="button" className='h-15 w-full bg-green-600 rounded-2xl cursor-pointer flex items-center justify-center 
-                            hover:bg-green-700 duration-200'>Оформить заказ <FaArrowRight size={20} className='relative -right-15' /></button>
+                            hover:bg-green-700 duration-200 disabled:bg-gray-400 disabled:animate-pulse'
+                                onClick={onClickOrder}
+                                disabled={isLoading}>Оформить заказ <FaArrowRight size={20} className='relative -right-15' /></button>
                         </div>
                     </>)
                         :
-                        (<div className="flex flex-col items-center justify-center h-full gap-8">
-                            <FaBoxOpen size={150} color="orange" />
-                            <div className="flex flex-col items-center justify-center gap-3">
-                                <h1 className="text-2xl font-semibold">Корзина пуста...</h1>
-                                <p className="text-center opacity-40 w-4/5">Добавьте хотя бы один товар чтобы оформить заказ</p>
-                            </div>
-                            <button type="button" className='h-15 w-full bg-green-600 rounded-2xl cursor-pointer flex items-center justify-center
-                            hover:bg-green-700 duration-200'
-                            onClick={onClose}><FaArrowLeft size={20} className='relative -left-15' /> Вернуться назад</button>
-                        </div>)
+                        <Info
+                            img={isOrdered ? <HiDocumentCheck size={150} color="green" /> : <FaBoxOpen size={150} color="orange" />}
+                            title={isOrdered ? "Заказ оформлен" : "Корзина пустая"}
+                            description={isOrdered ? "Ваш заказ скоро будет передан курьерской доставке" : "Добавьте хотя бы один товар чтобы оформить заказ"}
+                        />
                 }
 
             </aside>

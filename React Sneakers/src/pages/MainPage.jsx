@@ -1,10 +1,13 @@
 import axios from 'axios'
 import ProductCard from '../components/ProductCard'
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import { FiSearch } from "react-icons/fi";
 import { ImCross } from "react-icons/im";
+import AppContext from '../Context';
 
-function MainPage({ items, cartItems = [], addToCart, favoriteItems = [], addToFavorites, isLoading }) {
+function MainPage({ items, cartItems = [], addToCart, favoriteItems = [], isLoading }) {
+
+    const { addToFavorites } = useContext(AppContext)
 
     const [searchValue, setSearchValue] = useState('')
 
@@ -20,8 +23,6 @@ function MainPage({ items, cartItems = [], addToCart, favoriteItems = [], addToF
                     key={index}
                     onFavorite={(obj) => { addToFavorites(obj) }}
                     onPlus={(obj) => { addToCart(obj) }}
-                    added={cartItems.some(obj => Number(obj.id) == Number(item.id))}
-                    favorited={favoriteItems.some(obj => Number(obj.id) == Number(item.id))}
                     loading={isLoading}
                     {...item}
                 /* это конкотенация, мы передаем все элементы которые не функции или что-либо особое как обьект.

@@ -1,31 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { FaRegHeart, FaPlus } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 import ProductCardSkeleton from './ProductCardSkeleton';
+import AppContext from '../Context';
 
 function ProductCard({
     title,
     price,
-    img, id,
+    img,
+    id,
     onFavorite,
     onPlus,
-    favorited = false,
-    added = false,
     loading = false
 }) {
 
-    const [isAdded, setIsAdded] = useState(added)
-    const [isFavorite, setIsFavorite] = useState(favorited)
+    const { isItemAdded } = useContext(AppContext)
+    const { isItemFavorited } = useContext(AppContext)
 
     const onClickPlus = () => {
         onPlus({ title, price, img, id })
-        setIsAdded(!isAdded)
     }
 
     const onClickFavorite = () => {
         onFavorite({ title, price, img, id })
-        setIsFavorite(!isFavorite)
     }
 
     return (
@@ -33,7 +31,7 @@ function ProductCard({
         hover:shadow-2xl transition-all duration-200 hover:-translate-y-2 ease-in-out '>
             {loading ? <ProductCardSkeleton /> : <>
             {
-                isFavorite ? (
+                isItemFavorited(id) ? (
                     <div className='w-10 h-10  bg-red-200 flex items-center justify-center absolute left-7 top-7 rounded-xl 
                     cursor-pointer' onClick={onClickFavorite}>
                         <FaHeart size={20} color='red' />
@@ -50,10 +48,10 @@ function ProductCard({
                         <span className='text-sm text-gray-400 '>ЦЕНА:</span>
                         <p className='font-semibold text-lg'>{price} сом</p>
                     </div>
-                    <button type='button' className={isAdded ? `bg-green-500 w-9 h-9 flex items-center justify-center rounded-lg cursor-pointer` :
+                    <button type='button' className={isItemAdded(id) ? `bg-green-500 w-9 h-9 flex items-center justify-center rounded-lg cursor-pointer` :
                         `border border-gray-200 w-9 h-9 flex items-center justify-center rounded-lg cursor-pointer`}
                         onClick={onClickPlus}
-                    >{isAdded ? <FaCheck size={15} color='white' /> : <FaPlus color='lightgray' />}</button>
+                    >{isItemAdded(id) ? <FaCheck size={15} color='white' /> : <FaPlus color='lightgray' />}</button>
                 </div>
                 </>}
 
