@@ -6,13 +6,12 @@ import React from 'react'
 import Info from "./Info";
 import AppContext from "../Context";
 import axios from 'axios';
+import { useCart } from "../Hooks/useCart";
 
-function CartSidebar({ onClose, onRemove, items = [] }) {
-
-    const { cartItems, setCartItems } = React.useContext(AppContext)
-
+function CartSidebar({ onClose, onRemove, items = [], opened }) {
+    const { cartItems, setCartItems, totalPrice } = useCart()
     const [isOrdered, setIsOrdered] = React.useState(false)
-    //const [orderId, setOrderId] = React.useState(null) если бд генерирует сам id и по порядку то можно добавить это с `Ваш заказ ${orderId} скоро будет передан курьерской доставке`
+    const [orderId, setOrderId] = React.useState(null) //если бд генерирует сам id  orderNumber и по порядку то можно добавить это с 
     const [isLoading, setIsLoading] = React.useState(false)
 
     const onClickOrder = async () => {
@@ -20,22 +19,32 @@ function CartSidebar({ onClose, onRemove, items = [] }) {
             setIsLoading(true)
             const { data } = await axios.post("http://localhost:3001/Orders", { items: cartItems })
             //await axios.put("http://localhost:3001/cartItems", []) - для настоящего Бекенда, JSON server не работает с PUT
-            //setOrderId(data.Id)
+            //setOrderId(data.orderNumber) - если есть нормальный бекенд генерирующий orderNumber
+
+            // Снизу для будуещего себя - это генератор номера заказов сделанный из за неудобства с JSON server
+            const { data: orders} = await axios.get("http://localhost:3001/Orders")
+            setOrderId(orders.length)
+            //
+
             setIsOrdered(true)
             setCartItems([])
-            for (let i = 0; cartItems.length > i; i++) {
+
+            //
+            for (let i = 0; i <= cartItems.length + 1; i++) {
                 const item = cartItems[i]
                 await axios.delete(`http://localhost:3001/cartItems/${item.id}`)
-            } // Это замена правильному варианту. Будущий я, не используй это
+            } // Это замена правильному варианту. Будущий я, не используй это, используй put
         } catch (error) {
-            alert("Не смогли оформить заказ :(")
+            //alert("Не смогли оформить заказ :(")
+            console.log(error);
         }
         setIsLoading(false)
     }
 
     return (
         <>
-            <aside className='bg-white h-screen w-100 fixed right-0 top-0 border shadow-2xl z-10 p-7 flex flex-col'>
+            <aside className={`bg-white h-screen w-100 fixed right-0 top-0 border shadow-2xl z-10 p-7 flex flex-col   
+            ${opened ? "transition-all duration-300 ease-in-out visible opacity-100" : "invisible opacity-0 transition-all duration-300 ease-in-out translate-x-full"}`}>
                 <div className='flex items-center justify-between mb-10'>
                     <h3 className='font-semibold text-2xl'>Корзина</h3>
                     <button type="button" className='w-10 h-10 cursor-pointer'
@@ -66,12 +75,12 @@ function CartSidebar({ onClose, onRemove, items = [] }) {
                                 <li className='flex items-center justify-between gap-2'>
                                     <span>Итого:</span>
                                     <div className='h-px grow border border-dashed border-gray-400 relative top-2 '></div>
-                                    <p >21.498 сом</p>
+                                    <p >{ totalPrice } сом</p>
                                 </li>
                                 <li className='flex items-center justify-between gap-2'>
                                     <span>Налог 5%:</span>
                                     <div className='h-px grow border border-dashed border-gray-400 relative top-2 '></div>
-                                    <p>1.074 сом</p>
+                                    <p>{ ( totalPrice / 100 * 5).toFixed(1) } сом</p>
                                 </li>
                             </ul>
                             <button type="button" className='h-15 w-full bg-green-600 rounded-2xl cursor-pointer flex items-center justify-center 
@@ -84,12 +93,13 @@ function CartSidebar({ onClose, onRemove, items = [] }) {
                         <Info
                             img={isOrdered ? <HiDocumentCheck size={150} color="green" /> : <FaBoxOpen size={150} color="orange" />}
                             title={isOrdered ? "Заказ оформлен" : "Корзина пустая"}
-                            description={isOrdered ? "Ваш заказ скоро будет передан курьерской доставке" : "Добавьте хотя бы один товар чтобы оформить заказ"}
+                            description={isOrdered ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы один товар чтобы оформить заказ"}
                         />
                 }
 
             </aside>
-            <div className='bg-black h-screen w-screen fixed left-0 top-0 z-5 opacity-50'
+            <div className={`bg-black/50 h-screen w-screen fixed left-0 top-0 z-5
+            ${opened ? "visible opacity-100 transition-all ease-in-out duration-300 " : "invisible opacity-0 transition-all duration-300 ease-in-out"}`}
                 onClick={onClose}
             ></div>
         </>

@@ -1,9 +1,14 @@
+import React from 'react'
 import { BsCart2 } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
 import { Link } from 'react-router-dom'
+import { useCart } from '../Hooks/useCart';
+
 
 function Header(props) {
+    const { totalPrice } = useCart()
+
     return (
         <header className='flex items-center justify-between p-14 border-b-2 border-gray-200'>
             <Link to={"/"}>
@@ -20,13 +25,14 @@ function Header(props) {
                 <li className='flex items-center justify-center gap-3 cursor-pointer'
                     onClick={props.onClickCart}>
                     <BsCart2 size={25} color='gray' />
-                    <span className='text-gray-500 font-semibold'>1205 сом</span>
+                    <span className='text-gray-500 font-semibold'>{totalPrice} сом</span>
                 </li>
                 <Link to={"/Favorites"}>
                     <li className='cursor-pointer'><FaRegHeart size={25} color='gray' /></li>
                 </Link>
-                <li className='cursor-pointer'><CgProfile size={25} color='gray' /></li>
-
+                <Link to={"/Orders"}>
+                    <li className='cursor-pointer'><CgProfile size={25} color='gray' /></li>
+                </Link>
             </ul>
         </header>
     )

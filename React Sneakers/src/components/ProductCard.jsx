@@ -17,13 +17,14 @@ function ProductCard({
 
     const { isItemAdded } = useContext(AppContext)
     const { isItemFavorited } = useContext(AppContext)
+    const obj = { title, price, img, id }
 
     const onClickPlus = () => {
-        onPlus({ title, price, img, id })
+        onPlus(obj)
     }
 
     const onClickFavorite = () => {
-        onFavorite({ title, price, img, id })
+        onFavorite(obj)
     }
 
     return (
@@ -32,11 +33,11 @@ function ProductCard({
             {loading ? <ProductCardSkeleton /> : <>
             {
                 isItemFavorited(id) ? (
-                    <div className='w-10 h-10  bg-red-200 flex items-center justify-center absolute left-7 top-7 rounded-xl 
+                    onFavorite && <div className='w-10 h-10  bg-red-200 flex items-center justify-center absolute left-7 top-7 rounded-xl 
                     cursor-pointer' onClick={onClickFavorite}>
                         <FaHeart size={20} color='red' />
                     </div>) : (
-                    <div className='w-10 h-10 border border-gray-200 flex items-center justify-center absolute left-7 top-7 rounded-xl 
+                    onFavorite && <div className='w-10 h-10 border border-gray-200 flex items-center justify-center absolute left-7 top-7 rounded-xl 
                     cursor-pointer' onClick={onClickFavorite}>
                         <FaRegHeart size={20} color='lightgray' />
                     </div>)
@@ -48,10 +49,10 @@ function ProductCard({
                         <span className='text-sm text-gray-400 '>ЦЕНА:</span>
                         <p className='font-semibold text-lg'>{price} сом</p>
                     </div>
-                    <button type='button' className={isItemAdded(id) ? `bg-green-500 w-9 h-9 flex items-center justify-center rounded-lg cursor-pointer` :
+                    {onPlus && <button type='button' className={isItemAdded(id) ? `bg-green-500 w-9 h-9 flex items-center justify-center rounded-lg cursor-pointer` :
                         `border border-gray-200 w-9 h-9 flex items-center justify-center rounded-lg cursor-pointer`}
                         onClick={onClickPlus}
-                    >{isItemAdded(id) ? <FaCheck size={15} color='white' /> : <FaPlus color='lightgray' />}</button>
+                    >{isItemAdded(id) ? <FaCheck size={15} color='white' /> : <FaPlus color='lightgray' />}</button>}
                 </div>
                 </>}
 
