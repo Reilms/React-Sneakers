@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import { FiSearch } from "react-icons/fi";
 import { ImCross } from "react-icons/im";
 import AppContext from '../Context';
+import { HeroSwiper } from '../components/Swiper';
 
 function MainPage({ items, cartItems = [], addToCart, favoriteItems = [], isLoading }) {
 
@@ -38,6 +39,8 @@ function MainPage({ items, cartItems = [], addToCart, favoriteItems = [], isLoad
     return (
         <>
             <div className='p-20 flex flex-col gap-10'>
+
+                <HeroSwiper/>
 
                 <div className='flex items-center justify-between'>
                     <h1 className='font-bold text-4xl '>{searchValue ? `Поиск по запросу "${searchValue}"` : `Все кроссовки: `}</h1>

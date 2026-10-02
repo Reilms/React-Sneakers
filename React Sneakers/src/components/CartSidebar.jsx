@@ -30,7 +30,7 @@ function CartSidebar({ onClose, onRemove, items = [], opened }) {
             setCartItems([])
 
             //
-            for (let i = 0; i <= cartItems.length + 1; i++) {
+            for (let i = 0; i < cartItems.length ; i++) {
                 const item = cartItems[i]
                 await axios.delete(`http://localhost:3001/cartItems/${item.id}`)
             } // Это замена правильному варианту. Будущий я, не используй это, используй put
